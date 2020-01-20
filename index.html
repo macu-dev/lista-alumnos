@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="mascara">
+  <main class="mascara">  </main>
   <h1>Lista de alumnos</h1>
 
   <form class="form-classroom"action="" id="formulario">
@@ -17,7 +17,6 @@
     <input type="text" name="name" id="name" placeholder="nombres"><br/>
     <br/>
     
-      
     <label for="last-name">Apellido</label>
     <input type="text" name="last-name" id="last-name" placeholder="apellidos"><br/>
 
@@ -32,25 +31,25 @@
 
     <br/>
 
-
     <input type="submit" value="Agregar nota">
   </form>
 
   <br/>
 
-  <table class="hidden">
+  <table id="Alumnos" class="hidden">
     <thead>
       <tr>
         <th>Nombre</th>
         <th>Apellido</th>
         <th>Curso</th>
         <th>Nota</th>
+        <th>Acciones</th>
       </tr>
       <tbody id="tabla"></tbody>
     </thead>
   </table>
   <br>
-  </main>
+
   <script src="app.js"></script s>
 </body>
 </html>

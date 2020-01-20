@@ -1,5 +1,7 @@
+const form = document.getElementById("formulario");
+const alumnos = new Array();
 
-let form = document.getElementById("formulario");
+var editando = null;
 
 form.onsubmit = (e) =>{
   e.preventDefault();
@@ -9,9 +11,8 @@ form.onsubmit = (e) =>{
   let apellido = document.getElementById("last-name").value;
   let curso = document.getElementById("curso").value;
   let nota = document.getElementById("nota").value;
-  let tabla_visible = document.getElementsByClassName("hidden")[0];
 
- let isValid = true;
+  let isValid = true;
 
   if( nombre === undefined || !Number.isNaN(Number(nombre))) {
     alert("Ingrese por favor correctamente el nombre");
@@ -33,22 +34,68 @@ form.onsubmit = (e) =>{
   }
    
   if (isValid) {
-  
-    if(tabla_visible && tabla_visible.className == "hidden"){
-      tabla_visible.classList.remove ("hidden");
-    }
-      
-      let tabla_cuerpo = document.getElementById("tabla");
-      
-      tabla_cuerpo.innerHTML += `
+      if (!editando) {
+        alumnos.push({
+          nombre,
+          apellido,
+          curso,
+          nota
+        });
+      } else {
+        alumnos[editando] = {
+          nombre,
+          apellido,
+          curso,
+          nota
+        };
+        editando = null;
+      }
+        
+      //Dibujamos la tabla
+      RenderTabla();
+  }
+}
+
+function borrar(id) {
+  alumnos.splice(id,1);
+  RenderTabla();
+}
+
+function editar(id) {
+  editando = id;
+  let nombre = document.getElementById("name");
+  let apellido = document.getElementById("last-name");
+  let curso = document.getElementById("curso");
+  let nota = document.getElementById("nota");
+  let a = alumnos[id];
+  nombre.value = a.nombre;
+  apellido.value = a.apellido;
+  curso.value = a.curso;
+  nota.value = a.nota;
+}
+
+// Dibujar tabla
+function RenderTabla() {
+  let tabla_visible = document.getElementById("Alumnos");
+
+  if (alumnos.length > 0) {
+    let tabla_cuerpo = document.getElementById("tabla");
+    tabla_cuerpo.innerHTML = alumnos.map(({nombre, apellido, curso, nota}, index) =>{
+      return `
       <tr>
         <td>${nombre}</td>
         <td>${apellido}</td>
         <td>${curso}</td>
         <td>${nota}</td>
+        <td>
+          <button onclick="borrar('${index}')"> Borrar </button> <br/>
+          <button onclick="editar('${index}')">Editar</button>
+        </td>
       </tr>`;
+    }).join("");
+    tabla_visible.classList.remove("hidden");
+  } else {
+    tabla_visible.classList.add("hidden");
   }
 }
-
-
 
