@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Listas de Alumnos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="mascara">
+  <h1>Lista de alumnos</h1>
+
+  <form class="form-classroom"action="" id="formulario">
+    
+    <label for="name">Nombres</label>
+    <input type="text" name="name" id="name" placeholder="nombres"><br/>
+    <br/>
+    
+      
+    <label for="last-name">Apellido</label>
+    <input type="text" name="last-name" id="last-name" placeholder="apellidos"><br/>
+
+    <br/>
+
+    <label for="name">Curso</label>
+    <input type="text" name="curso" id="curso" placeholder="curso"><br/>
+    <br/>
+
+    <label for="note">Nota</label>
+    <input type="number" name="note" max="10" min="0" id="nota" ><br/>
+
+    <br/>
+
+
+    <input type="submit" value="Agregar nota">
+  </form>
+
+  <br/>
+
+  <table class="hidden">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Curso</th>
+        <th>Nota</th>
+      </tr>
+      <tbody id="tabla"></tbody>
+    </thead>
+  </table>
+  <br>
+  </main>
+  <script src="app.js"></script s>
+</body>
+</html>
